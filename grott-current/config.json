@@ -1,5 +1,5 @@
 {
-  "name": "Grott - Home Assistant native MQTT integration - current",
+  "name": "Grott edge - Home Assistant native MQTT integration - current",
   "version": "edge-4729997302",
   "slug": "grott-current",
   "description": "The Growatt inverter monitor with current HA plugin integrated",
