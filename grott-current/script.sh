@@ -40,7 +40,6 @@ if bashio::config.has_value 'ginvtype'; then export ginvtype="$(bashio::config '
 if bashio::config.has_value 'gdecrypt'; then export gdecrypt="$(bashio::config 'gdecrypt')"; fi
 if bashio::config.has_value 'ggrowattip'; then export ggrowattip="$(bashio::config 'ggrowattip')"; fi
 if bashio::config.has_value 'ggrowattport'; then export ggrowattport="$(bashio::config 'ggrowattport')"; fi
-if bashio::config.has_value 'gnomqtt'; then export gnomqtt="$(bashio::config 'gnomqtt')"; fi
 if bashio::config.has_value 'gmqttip'; then export gmqttip="$(bashio::config 'gmqttip')"; fi
 if bashio::config.has_value 'gmqttport'; then export gmqttport="$(bashio::config 'gmqttport')"; fi
 if bashio::config.has_value 'gmqtttopic'; then export gmqtttopic="$(bashio::config 'gmqtttopic')"; fi
@@ -64,9 +63,15 @@ if bashio::config.has_value 'giftoken'; then export giftoken="$(bashio::config '
 if bashio::config.has_value 'ginvtypemap'; then export ginvtypemap="$(bashio::config 'ginvtypemap')"; fi
 if bashio::config.has_value 'gpvdisv1'; then export gpvdisv1="$(bashio::config 'gpvdisv1')"; fi
 
-# pre configure the extension to use the integrated mosquitto broker
-export gextension="True"
-export gextname="grott_ha"
+if bashio::config.has_value 'grott_mqtt'; then
+    if bashio::config.true 'grott_mqtt'; then
+        export gnomqtt="False"; 
+    else
+        export gnomqtt="True"; 
+    fi
+fi
+
+
 if bashio::config.true 'retain'; then
     export MQTT_RETAIN="True"
 else
@@ -89,6 +94,7 @@ function export_config() {
 
 export_config 'mqtt'
 
+# If the mqtt block is empty, but the mqtt service exists, use that.
 if bashio::config.is_empty 'mqtt' && bashio::var.has_value "$(bashio::services 'mqtt')"; then
     export GROTT_CONFIG_MQTT_HOST="$(bashio::services 'mqtt' 'host')"
     export GROTT_CONFIG_MQTT_PORT="$(bashio::services 'mqtt' 'port')"
@@ -96,6 +102,24 @@ if bashio::config.is_empty 'mqtt' && bashio::var.has_value "$(bashio::services '
     export GROTT_CONFIG_MQTT_PASSWORD="$(bashio::services 'mqtt' 'password')"
 fi
 
-export gextvar="{\"ha_mqtt_host\": \"$GROTT_CONFIG_MQTT_HOST\", \"ha_mqtt_port\": \"$GROTT_CONFIG_MQTT_PORT\", \"ha_mqtt_user\": \"$GROTT_CONFIG_MQTT_USER\", \"ha_mqtt_password\": \"$GROTT_CONFIG_MQTT_PASSWORD\", \"ha_mqtt_retain\": $MQTT_RETAIN}"
+if bashio::config.true 'ha_plugin'; then
+    # pre configure the extension to use the integrated mosquitto broker
+    export gextension="True"
+    export gextname="grott_ha"
+    export gextvar="{\"ha_mqtt_host\": \"$GROTT_CONFIG_MQTT_HOST\", \"ha_mqtt_port\": \"$GROTT_CONFIG_MQTT_PORT\", \"ha_mqtt_user\": \"$GROTT_CONFIG_MQTT_USER\", \"ha_mqtt_password\": \"$GROTT_CONFIG_MQTT_PASSWORD\", \"ha_mqtt_retain\": $MQTT_RETAIN}"
+fi
+
+# Auto configure the MQTT output if enabled
+if bashio::config.true 'grott_mqtt'; then
+    # if using the addon we are required to put an IP, we can't use a DNS
+    if bashio::var.has_value "$(bashio::services 'mqtt')"; then
+        export GROTT_CONFIG_MQTT_HOST="$(dig $GROTT_CONFIG_MQTT_HOST +short)";
+    fi
+    export gmqttauth="True"
+    export gmqttip="$GROTT_CONFIG_MQTT_HOST";
+    export gmqttport="$GROTT_CONFIG_MQTT_PORT";
+    export gmqttuser="$GROTT_CONFIG_MQTT_USER";
+    export gmqttpassword="$GROTT_CONFIG_MQTT_PASSWORD"
+fi
 
 python -u grott.py -c "$DATA_PATH/grott.ini"

@@ -30,11 +30,12 @@
   "options": {
     "data_path": "/config/grott",
     "gmode": "proxy",
-    "gnomqtt": true,
+    "grott_mqtt": false,
     "ginvtype": "default",
     "ginvtypemap": "",
     "retain": false,
     "verbose": false,
+    "ha_plugin": true,
     "mqtt": {}
   },
   "schema": {
@@ -72,7 +73,7 @@
     "gmqtttopic": "str?",
     "gmqttuser": "str?",
     "gnoipf": "bool?",
-    "gnomqtt": "bool?",
+    "grott_mqtt": "bool?",
     "gpvapikey": "str?",
     "gpvdisv1": "bool?",
     "gpvinverters": "int?",
@@ -85,6 +86,7 @@
     "gvalueoffset": "int?",
     "verbose": "bool",
     "retain": "bool",
+    "ha_plugin": "bool",
     "mqtt": {
       "host": "str?",
       "port": "int?",

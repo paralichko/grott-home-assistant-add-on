@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8
+
+Added and option to improve compatibility with [grott homeassistant integration](https://github.com/muppet3000/homeassistant-grott).
+
+To activate this mode, you can disable the HA integration in the configuration and enable the grott_mqtt flag. This will configure the MQTT for pushing information through the grott MQTT exporter.
 
 ## 0.7
 
