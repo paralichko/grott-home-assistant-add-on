@@ -7,7 +7,7 @@ import glob
 
 BUILDS = [
     "grott",
-    "grott-edge",
+    "grott-current",
 ]
 
 TRANSLATIONS_FOLDER = "translations"
