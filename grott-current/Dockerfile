@@ -12,7 +12,7 @@ ENV LANG C.UTF-8
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache python3=3.11.4-r4 && ln -sf python3 /usr/bin/python && python3 -m ensurepip
+RUN apk add --update --no-cache python3=3.11.4-r0 && ln -sf python3 /usr/bin/python && python3 -m ensurepip
 
 
 #RUN curl -k https://codeload.github.com/johanmeijer/grott/zip/master --output files.zip && unzip files.zip
@@ -20,7 +20,7 @@ RUN apk add --update --no-cache python3=3.11.4-r4 && ln -sf python3 /usr/bin/pyt
 
 # Copy data for add-on
 COPY script.sh /app/script.sh
-RUN chmod a+x script.sh
+RUN chmod a+x /app/script.sh
 
 WORKDIR /app
 RUN curl -Lk 'https://github.com/johanmeijer/grott/archive/refs/heads/master.zip' --output files.zip && unzip -o files.zip && rm files.zip && mv grott-*/*.py ./
