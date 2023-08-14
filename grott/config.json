@@ -6,10 +6,8 @@
   "url": "https://github.com/johanmeijer/grott",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "codenotary": "etienne.guilluy@gmail.com",
-  "startup": "application",
   "services": ["mqtt:need"],
   "init": false,
-  "boot": "auto",
   "ports": {
     "5279/tcp": 5279
   },

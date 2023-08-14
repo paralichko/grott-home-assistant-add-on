@@ -6,10 +6,8 @@
   "url": "https://github.com/egguy/grott-home-assistant-add-on/tree/main/grott-current",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "codenotary": "etienne.guilluy@gmail.com",
-  "startup": "application",
   "services": ["mqtt:need"],
   "init": false,
-  "boot": "auto",
   "map": ["config:rw"],
   "ports": {
     "5279/tcp": 5279
@@ -17,7 +15,6 @@
   "ports_description": {
     "5279/tcp": "The port used by grott to receive the data of the logger"
   },
-  "watchdog": "tcp://[HOST]:[PORT:5279]",
   "options": {
     "data_path": "/config/grott",
     "gmode": "proxy",
