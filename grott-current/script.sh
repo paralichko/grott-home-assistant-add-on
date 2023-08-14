@@ -1,4 +1,5 @@
-#!1 bashio
+#!/command/with-contenv bashio
+# shellcheck shell=bash
 
 bashio::log.info "Preparing to start..."
 
@@ -225,9 +226,11 @@ if bashio::config.true 'ha_plugin'; then
     # pre configure the extension to use the integrated mosquitto broker
     gextension="True"
     gextname="grott_ha"
+    # shellcheck disable=SC2089
     gextvar="{\"ha_mqtt_host\": \"$GROTT_CONFIG_MQTT_HOST\", \"ha_mqtt_port\": \"$GROTT_CONFIG_MQTT_PORT\", \"ha_mqtt_user\": \"$GROTT_CONFIG_MQTT_USER\", \"ha_mqtt_password\": \"$GROTT_CONFIG_MQTT_PASSWORD\", \"ha_mqtt_retain\": $MQTT_RETAIN}"
     export gextension
     export gextname
+    # shellcheck disable=SC2090
     export gextvar
 fi
 
