@@ -14,7 +14,6 @@ To activate this mode, you can disable the HA integration in the configuration a
   - data path, now you can edit your configuration in /config/grott/grott.ini
   - Allow custom MQTT broker
 
-
 ## 0.6
 
 - Updated the branch used by grott
@@ -31,7 +30,7 @@ To activate this mode, you can disable the HA integration in the configuration a
 ## 0.2
 
 - Based on grott v2.7.7
-- use the current  grott_ha.py plugins
+- use the current grott_ha.py plugins
 - Auto configuration for the MQTT part
 
 ## 0.1

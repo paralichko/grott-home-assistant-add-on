@@ -16,7 +16,7 @@
 ## 0.2
 
 - Based on grott v2.7.7
-- use the current  grott_ha.py plugins
+- use the current grott_ha.py plugins
 - Auto configuration for the MQTT part
 
 ## 0.1
