@@ -1,4 +1,5 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.1.0
+# hadolint ignore=DL3006
 FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
@@ -26,7 +27,7 @@ RUN curl -Lk 'https://github.com/johanmeijer/grott/archive/refs/heads/master.zip
 # Move the addon
 RUN mv grott-*/examples/Home\ Assistent/grott_ha.py ./
 
-#Install required python packages 
+#Install required python packages
 RUN pip install paho-mqtt requests influxdb influxdb
 
 
