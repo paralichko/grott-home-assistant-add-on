@@ -1,6 +1,6 @@
 {
   "name": "Grott - HA extension",
-  "version": "2.7.8",
+  "version": "dev",
   "slug": "grott",
   "description": "The Growatt inverter monitor",
   "url": "https://github.com/johanmeijer/grott",
@@ -69,6 +69,5 @@
       "user": "str?",
       "password": "str?"
     }
-  },
-  "image": "egguy/addon-{arch}-grott-ha-addon"
+  }
 }
