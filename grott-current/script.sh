@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!1 bashio
 
 bashio::log.info "Preparing to start..."
 
@@ -8,7 +8,7 @@ bashio::log.info "Preparing to start..."
 # - https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/issues/387
 bashio::config.require 'data_path'
 
-export DATA_PATH=$(bashio::config 'data_path')
+DATA_PATH=$(bashio::config 'data_path')
 if ! bashio::fs.file_exists "$DATA_PATH/grott.ini"; then
     mkdir -p "$DATA_PATH" || bashio::exit.nok "Could not create $DATA_PATH"
 
@@ -18,64 +18,183 @@ if ! bashio::fs.file_exists "$DATA_PATH/grott.ini"; then
 
 fi
 
+# Follow shellcheck recommendations
 if bashio::config.has_value 'verbose'; then
     # bug in grott code, see: https://github.com/johanmeijer/grott/pull/304
-    export gverbose="$(bashio::config 'verbose')"
-    export verbose="$(bashio::config 'verbose')"
+    gverbose="$(bashio::config 'verbose')"
+    verbose="$(bashio::config 'verbose')"
+    export gverbose
+    export verbose
 fi
-if bashio::config.has_value 'gminrecl'; then export gminrecl="$(bashio::config 'gminrecl')"; fi
-if bashio::config.has_value 'gmode'; then export gmode="$(bashio::config 'gmode')"; fi
-if bashio::config.has_value 'ggrottip'; then export ggrottip="$(bashio::config 'ggrottip')"; fi
-if bashio::config.has_value 'ggrottport'; then export ggrottport="$(bashio::config 'ggrottport')"; fi
-if bashio::config.has_value 'gblockcmd'; then export gblockcmd="$(bashio::config 'gblockcmd')"; fi
-if bashio::config.has_value 'gnoipf'; then export gnoipf="$(bashio::config 'gnoipf')"; fi
-if bashio::config.has_value 'gtime'; then export gtime="$(bashio::config 'gtime')"; fi
-if bashio::config.has_value 'gtimezone'; then export gtimezone="$(bashio::config 'gtimezone')"; fi
-if bashio::config.has_value 'gsendbuf'; then export gsendbuf="$(bashio::config 'gsendbuf')"; fi
-if bashio::config.has_value 'gcompat'; then export gcompat="$(bashio::config 'gcompat')"; fi
-if bashio::config.has_value 'gvalueoffset'; then export gvalueoffset="$(bashio::config 'gvalueoffset')"; fi
-if bashio::config.has_value 'ginverterid'; then export ginverterid="$(bashio::config 'ginverterid')"; fi
-if bashio::config.has_value 'gincludeall'; then export gincludeall="$(bashio::config 'gincludeall')"; fi
-if bashio::config.has_value 'ginvtype'; then export ginvtype="$(bashio::config 'ginvtype')"; fi
-if bashio::config.has_value 'gdecrypt'; then export gdecrypt="$(bashio::config 'gdecrypt')"; fi
-if bashio::config.has_value 'ggrowattip'; then export ggrowattip="$(bashio::config 'ggrowattip')"; fi
-if bashio::config.has_value 'ggrowattport'; then export ggrowattport="$(bashio::config 'ggrowattport')"; fi
-if bashio::config.has_value 'gmqttip'; then export gmqttip="$(bashio::config 'gmqttip')"; fi
-if bashio::config.has_value 'gmqttport'; then export gmqttport="$(bashio::config 'gmqttport')"; fi
-if bashio::config.has_value 'gmqtttopic'; then export gmqtttopic="$(bashio::config 'gmqtttopic')"; fi
-if bashio::config.has_value 'gmqttauth'; then export gmqttauth="$(bashio::config 'gmqttauth')"; fi
-if bashio::config.has_value 'gmqttuser'; then export gmqttuser="$(bashio::config 'gmqttuser')"; fi
-if bashio::config.has_value 'gmqttpassword'; then export gmqttpassword="$(bashio::config 'gmqttpassword')"; fi
-if bashio::config.has_value 'gpvoutput'; then export gpvoutput="$(bashio::config 'gpvoutput')"; fi
-if bashio::config.has_value 'gpvapikey'; then export gpvapikey="$(bashio::config 'gpvapikey')"; fi
-if bashio::config.has_value 'gpvsystemid'; then export gpvsystemid="$(bashio::config 'gpvsystemid')"; fi
-if bashio::config.has_value 'gpvinverters'; then export gpvinverters="$(bashio::config 'gpvinverters')"; fi
-if bashio::config.has_value 'ginflux'; then export ginflux="$(bashio::config 'ginflux')"; fi
-if bashio::config.has_value 'ginflux2'; then export ginflux2="$(bashio::config 'ginflux2')"; fi
-if bashio::config.has_value 'gifdbname'; then export gifdbname="$(bashio::config 'gifdbname')"; fi
-if bashio::config.has_value 'gifip'; then export gifip="$(bashio::config 'gifip')"; fi
-if bashio::config.has_value 'gifport'; then export gifport="$(bashio::config 'gifport')"; fi
-if bashio::config.has_value 'gifuser'; then export gifuser="$(bashio::config 'gifuser')"; fi
-if bashio::config.has_value 'gifpassword'; then export gifpassword="$(bashio::config 'gifpassword')"; fi
-if bashio::config.has_value 'giforg'; then export giforg="$(bashio::config 'giforg')"; fi
-if bashio::config.has_value 'gifbucket'; then export gifbucket="$(bashio::config 'gifbucket')"; fi
-if bashio::config.has_value 'giftoken'; then export giftoken="$(bashio::config 'giftoken')"; fi
-if bashio::config.has_value 'ginvtypemap'; then export ginvtypemap="$(bashio::config 'ginvtypemap')"; fi
-if bashio::config.has_value 'gpvdisv1'; then export gpvdisv1="$(bashio::config 'gpvdisv1')"; fi
+if bashio::config.has_value 'gminrecl'; then
+    gminrecl="$(bashio::config 'gminrecl')"
+    export gminrecl
+fi
+if bashio::config.has_value 'gmode'; then
+    gmode="$(bashio::config 'gmode')"
+    export gmode
+fi
+if bashio::config.has_value 'ggrottip'; then
+    ggrottip="$(bashio::config 'ggrottip')"
+    export ggrottip
+fi
+if bashio::config.has_value 'ggrottport'; then
+    ggrottport="$(bashio::config 'ggrottport')"
+    export ggrottport
+fi
+if bashio::config.has_value 'gblockcmd'; then
+    gblockcmd="$(bashio::config 'gblockcmd')"
+    export gblockcmd
+fi
+if bashio::config.has_value 'gnoipf'; then
+    gnoipf="$(bashio::config 'gnoipf')"
+    export gnoipf
+fi
+if bashio::config.has_value 'gtime'; then
+    gtime="$(bashio::config 'gtime')"
+    export gtime
+fi
+if bashio::config.has_value 'gtimezone'; then
+    gtimezone="$(bashio::config 'gtimezone')"
+    export gtimezone
+fi
+if bashio::config.has_value 'gsendbuf'; then
+    gsendbuf="$(bashio::config 'gsendbuf')"
+    export gsendbuf
+fi
+if bashio::config.has_value 'gcompat'; then
+    gcompat="$(bashio::config 'gcompat')"
+    export gcompat
+fi
+if bashio::config.has_value 'gvalueoffset'; then
+    gvalueoffset="$(bashio::config 'gvalueoffset')"
+    export gvalueoffset
+fi
+if bashio::config.has_value 'ginverterid'; then
+    ginverterid="$(bashio::config 'ginverterid')"
+    export ginverterid
+fi
+if bashio::config.has_value 'gincludeall'; then
+    gincludeall="$(bashio::config 'gincludeall')"
+    export gincludeall
+fi
+if bashio::config.has_value 'ginvtype'; then
+    ginvtype="$(bashio::config 'ginvtype')"
+    export ginvtype
+fi
+if bashio::config.has_value 'gdecrypt'; then
+    gdecrypt="$(bashio::config 'gdecrypt')"
+    export gdecrypt
+fi
+if bashio::config.has_value 'ggrowattip'; then
+    ggrowattip="$(bashio::config 'ggrowattip')"
+    export ggrowattip
+fi
+if bashio::config.has_value 'ggrowattport'; then
+    ggrowattport="$(bashio::config 'ggrowattport')"
+    export ggrowattport
+fi
+if bashio::config.has_value 'gmqttip'; then
+    gmqttip="$(bashio::config 'gmqttip')"
+    export gmqttip
+fi
+if bashio::config.has_value 'gmqttport'; then
+    gmqttport="$(bashio::config 'gmqttport')"
+    export gmqttport
+fi
+if bashio::config.has_value 'gmqtttopic'; then
+    gmqtttopic="$(bashio::config 'gmqtttopic')"
+    export gmqtttopic
+fi
+if bashio::config.has_value 'gmqttauth'; then
+    gmqttauth="$(bashio::config 'gmqttauth')"
+    export gmqttauth
+fi
+if bashio::config.has_value 'gmqttuser'; then
+    gmqttuser="$(bashio::config 'gmqttuser')"
+    export gmqttuser
+fi
+if bashio::config.has_value 'gmqttpassword'; then
+    gmqttpassword="$(bashio::config 'gmqttpassword')"
+    export gmqttpassword
+fi
+if bashio::config.has_value 'gpvoutput'; then
+    gpvoutput="$(bashio::config 'gpvoutput')"
+    export gpvoutput
+fi
+if bashio::config.has_value 'gpvapikey'; then
+    gpvapikey="$(bashio::config 'gpvapikey')"
+    export gpvapikey
+fi
+if bashio::config.has_value 'gpvsystemid'; then
+    gpvsystemid="$(bashio::config 'gpvsystemid')"
+    export gpvsystemid
+fi
+if bashio::config.has_value 'gpvinverters'; then
+    gpvinverters="$(bashio::config 'gpvinverters')"
+    export gpvinverters
+fi
+if bashio::config.has_value 'ginflux'; then
+    ginflux="$(bashio::config 'ginflux')"
+    export ginflux
+fi
+if bashio::config.has_value 'ginflux2'; then
+    ginflux2="$(bashio::config 'ginflux2')"
+    export ginflux2
+fi
+if bashio::config.has_value 'gifdbname'; then
+    gifdbname="$(bashio::config 'gifdbname')"
+    export gifdbname
+fi
+if bashio::config.has_value 'gifip'; then
+    gifip="$(bashio::config 'gifip')"
+    export gifip
+fi
+if bashio::config.has_value 'gifport'; then
+    gifport="$(bashio::config 'gifport')"
+    export gifport
+fi
+if bashio::config.has_value 'gifuser'; then
+    gifuser="$(bashio::config 'gifuser')"
+    export gifuser
+fi
+if bashio::config.has_value 'gifpassword'; then
+    gifpassword="$(bashio::config 'gifpassword')"
+    export gifpassword
+fi
+if bashio::config.has_value 'giforg'; then
+    giforg="$(bashio::config 'giforg')"
+    export giforg
+fi
+if bashio::config.has_value 'gifbucket'; then
+    gifbucket="$(bashio::config 'gifbucket')"
+    export gifbucket
+fi
+if bashio::config.has_value 'giftoken'; then
+    giftoken="$(bashio::config 'giftoken')"
+    export giftoken
+fi
+if bashio::config.has_value 'ginvtypemap'; then
+    ginvtypemap="$(bashio::config 'ginvtypemap')"
+    export ginvtypemap
+fi
+if bashio::config.has_value 'gpvdisv1'; then
+    gpvdisv1="$(bashio::config 'gpvdisv1')"
+    export gpvdisv1
+fi
 
 if bashio::config.has_value 'grott_mqtt'; then
     if bashio::config.true 'grott_mqtt'; then
-        export gnomqtt="False"; 
+        export gnomqtt="False"
     else
-        export gnomqtt="True"; 
+        export gnomqtt="True"
     fi
 fi
 
-
 if bashio::config.true 'retain'; then
-    export MQTT_RETAIN="True"
+    MQTT_RETAIN="True"
 else
-    export MQTT_RETAIN="False"
+    MQTT_RETAIN="False"
 fi
 
 # Expose addon configuration through environment variables.
@@ -96,29 +215,32 @@ export_config 'mqtt'
 
 # If the mqtt block is empty, but the mqtt service exists, use that.
 if bashio::config.is_empty 'mqtt' && bashio::var.has_value "$(bashio::services 'mqtt')"; then
-    export GROTT_CONFIG_MQTT_HOST="$(bashio::services 'mqtt' 'host')"
-    export GROTT_CONFIG_MQTT_PORT="$(bashio::services 'mqtt' 'port')"
-    export GROTT_CONFIG_MQTT_USER="$(bashio::services 'mqtt' 'username')"
-    export GROTT_CONFIG_MQTT_PASSWORD="$(bashio::services 'mqtt' 'password')"
+    GROTT_CONFIG_MQTT_HOST="$(bashio::services 'mqtt' 'host')"
+    GROTT_CONFIG_MQTT_PORT="$(bashio::services 'mqtt' 'port')"
+    GROTT_CONFIG_MQTT_USER="$(bashio::services 'mqtt' 'username')"
+    GROTT_CONFIG_MQTT_PASSWORD="$(bashio::services 'mqtt' 'password')"
 fi
 
 if bashio::config.true 'ha_plugin'; then
     # pre configure the extension to use the integrated mosquitto broker
-    export gextension="True"
-    export gextname="grott_ha"
-    export gextvar="{\"ha_mqtt_host\": \"$GROTT_CONFIG_MQTT_HOST\", \"ha_mqtt_port\": \"$GROTT_CONFIG_MQTT_PORT\", \"ha_mqtt_user\": \"$GROTT_CONFIG_MQTT_USER\", \"ha_mqtt_password\": \"$GROTT_CONFIG_MQTT_PASSWORD\", \"ha_mqtt_retain\": $MQTT_RETAIN}"
+    gextension="True"
+    gextname="grott_ha"
+    gextvar="{\"ha_mqtt_host\": \"$GROTT_CONFIG_MQTT_HOST\", \"ha_mqtt_port\": \"$GROTT_CONFIG_MQTT_PORT\", \"ha_mqtt_user\": \"$GROTT_CONFIG_MQTT_USER\", \"ha_mqtt_password\": \"$GROTT_CONFIG_MQTT_PASSWORD\", \"ha_mqtt_retain\": $MQTT_RETAIN}"
+    export gextension
+    export gextname
+    export gextvar
 fi
 
 # Auto configure the MQTT output if enabled
 if bashio::config.true 'grott_mqtt'; then
     # if using the addon we are required to put an IP, we can't use a DNS
     if bashio::var.has_value "$(bashio::services 'mqtt')"; then
-        export GROTT_CONFIG_MQTT_HOST="$(dig $GROTT_CONFIG_MQTT_HOST +short)";
+        GROTT_CONFIG_MQTT_HOST="$(dig "$GROTT_CONFIG_MQTT_HOST" +short)"
     fi
     export gmqttauth="True"
-    export gmqttip="$GROTT_CONFIG_MQTT_HOST";
-    export gmqttport="$GROTT_CONFIG_MQTT_PORT";
-    export gmqttuser="$GROTT_CONFIG_MQTT_USER";
+    export gmqttip="$GROTT_CONFIG_MQTT_HOST"
+    export gmqttport="$GROTT_CONFIG_MQTT_PORT"
+    export gmqttuser="$GROTT_CONFIG_MQTT_USER"
     export gmqttpassword="$GROTT_CONFIG_MQTT_PASSWORD"
 fi
 
