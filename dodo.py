@@ -30,3 +30,15 @@ def task_copy_translations():
                 "file_dep": [f"{TRANSLATIONS_FOLDER}/{translation}"],
                 "targets": [f"{build}/translations/{translation}"],
             }
+
+def task_copy_requirements():
+    """Copy requirements.txt to the builds."""
+    for build in BUILDS:
+        yield {
+            "name": f"copy requirements.txt to {build}",
+            "actions": [
+                f"cp requirements.txt {build}/requirements.txt",
+            ],
+            "file_dep": ["requirements.txt"],
+            "targets": [f"{build}/requirements.txt"],
+        }

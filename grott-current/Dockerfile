@@ -12,9 +12,7 @@ ENV LANG C.UTF-8
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+RUN apk add --update --no-cache python3=3.11.4-r4 && ln -sf python3 /usr/bin/python && python3 -m ensurepip
 
 
 #RUN curl -k https://codeload.github.com/johanmeijer/grott/zip/master --output files.zip && unzip files.zip
@@ -22,16 +20,17 @@ RUN pip3 install --no-cache --upgrade pip setuptools
 
 # Copy data for add-on
 COPY script.sh /app/script.sh
+RUN chmod a+x script.sh
+
 WORKDIR /app
 RUN curl -Lk 'https://github.com/johanmeijer/grott/archive/refs/heads/master.zip' --output files.zip && unzip -o files.zip && rm files.zip && mv grott-*/*.py ./
 # Move the addon
 RUN curl -L 'https://raw.githubusercontent.com/egguy/grott/feature/ha-extension/examples/Home%20Assistent/grott_ha.py' -o grott_ha.py
 
+COPY requirements.txt requirements.txt
 #Install required python packages
-RUN pip3 install paho-mqtt requests influxdb influxdb
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-
-RUN chmod a+x script.sh
 CMD [ "./script.sh" ]
 
 # Build arguments
