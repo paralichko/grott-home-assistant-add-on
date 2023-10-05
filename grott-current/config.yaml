@@ -1,20 +1,19 @@
----
 name: grott
 version: b6f2f24
-slug: grott-current
+slug: grott
 description: The Growatt inverter monitor with current HA plugin integrated
 url: https://github.com/egguy/addon-grott
 arch:
-  - armhf
-  - armv7
-  - aarch64
-  - amd64
-  - i386
+- armhf
+- armv7
+- aarch64
+- amd64
+- i386
 services:
-  - mqtt:need
+- mqtt:need
 init: false
 map:
-  - config:rw
+- config:rw
 ports:
   5279/tcp: 5279
 ports_description:
@@ -24,7 +23,7 @@ options:
   gmode: proxy
   grott_mqtt: false
   ginvtype: default
-  ginvtypemap: ""
+  ginvtypemap: ''
   retain: false
   verbose: false
   ha_plugin: true
@@ -84,4 +83,4 @@ schema:
     user: str?
     password: str?
   data_path: str
-image: ghcr.io/egguy/addon-grott/{arch}
+image: ghcr.io/egguy/grott/{arch}
