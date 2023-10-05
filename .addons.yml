@@ -5,3 +5,7 @@ addons:
     repository: egguy/addon-grott
     target: grott
     image: ghcr.io/egguy/addon-grott/{arch}
+  grott-current:
+    repository: egguy/addon-grott
+    target: grott-current
+    image: ghcr.io/egguy/addon-grott/{arch}
