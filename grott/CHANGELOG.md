@@ -1,25 +1,10 @@
-# Changelog
-
-## 0.6
-
-- Updated the branch used by grott
-
-## 0.5
-
-- Change to use pip3 with the newest addon image.
-
-## 0.3
-
-- Add translations
-- Moved the ginvtypemap to the top configuration
-
-## 0.2
-
-- Based on grott v2.7.7
-- use the current grott_ha.py plugins
-- Auto configuration for the MQTT part
-
-## 0.1
-
-- Initial version
-- Based on grott v2.7.6
+# Changelog since v0.1.0
+- ⬆️ Update Add-on base image to v14.2.1 
+- Corrected typo 
+- Add multiple target for deploy 
+- Updated base 
+- Updated deploy configuration 
+- Updated repository URL 
+- Add edge 
+- ⬆️ Update alpine_3_18/python3 to v3.11.6-r0 
+- Add ref to stable repository 
