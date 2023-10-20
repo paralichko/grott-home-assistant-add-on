@@ -59,10 +59,10 @@ For a general repository issue or add-on ideas [open an issue here][issue]
 
 
 
-[addon-grott-current]: https://github.com/egguy/addon-grott-beta/tree/v0.1.2
-[addon-doc-grott-current]: https://github.com/egguy/addon-grott-beta/blob/v0.1.2/README.md
+[addon-grott-current]: https://github.com/egguy/addon-grott-beta/tree/v0.1.3
+[addon-doc-grott-current]: https://github.com/egguy/addon-grott-beta/blob/v0.1.3/README.md
 [grott-current-issue]: https://github.com/egguy/addon-grott-beta/issues
-[grott-current-version-shield]: https://img.shields.io/badge/version-v0.1.2-blue.svg
+[grott-current-version-shield]: https://img.shields.io/badge/version-v0.1.3-blue.svg
 [grott-current-aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [grott-current-amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [grott-current-armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
