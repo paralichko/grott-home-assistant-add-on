@@ -8,34 +8,75 @@ This allow to process in local all the data from the growatt datalogger and don'
 
 This addon allow you to have all the entities automatically created.
 
-## Installation
 
-1. If you don't have an MQTT broker yet; in Home Assistant go to **Settings → Add-ons → Add-on store** and install the **Mosquitto broker** addon.
-1. Go back to the **Add-on store**, click **⋮ → Repositories**, fill in</br> `https://github.com/egguy/grott-home-assistant-add-on` and click **Add → Close** or click the **Add repository** button below, click **Add → Close** (You might need to enter the **internal IP address** of your Home Assistant instance first).  
-   [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fegguy%2Fgrott-home-assistant-add-on)
-1. The repository includes two add-ons:
-   - **grott** is the stable release that tracks the released versions of grott HA plugin.
-   - **grott Edge** tracks the `dev` branch of grott HA plugin such that you can install the edge version if there are features or fixes in the grott HA dev branch that are not yet released. (**recommended for most users**)
-1. Click on the addon and press **Install** and wait till the addon is installed.
-1. Click on **Configuration**
+## Add-ons provided by this repository
 
-   - If you are **not** using the Mosquitto broker addon fill in your MQTT details (leave empty when using the Mosquitto broker addon). Format is e.g.: <br>
+### &#10003; [Grott Beta branch (2.8) - An addon for Home Assistant to monitor Growatt inverters][addon-grott-current]
 
-     ```yaml
-     host: <IP>
-     port: 1883
-     username: my_user
-     password: my_password
-     ```
+![Latest Version][grott-current-version-shield]
+![Supports armhf Architecture][grott-current-armhf-shield]
+![Supports armv7 Architecture][grott-current-armv7-shield]
+![Supports aarch64 Architecture][grott-current-aarch64-shield]
+![Supports amd64 Architecture][grott-current-amd64-shield]
+![Supports i386 Architecture][grott-current-i386-shield]
 
-   - Click **Save**
-   - **Tip:** it is possible to refer to variables in the Home Assistant `secrets.yaml` file by using e.g. `password: '!secret mqtt_pass'`
+The Growatt inverter monitor with current HA plugin integrated
 
-1. If multiple inverters, please refer on how to configure them on this documentation: <https://github.com/johanmeijer/grott/wiki/Multi-Inverter-support>
-1. Start the addon by going to **Info** and click **Start**
-1. Configure your data logger using the information contained here: [Rerouting Growatt Wifi TCPIP data via your Grott Server](https://github.com/johanmeijer/grott/wiki/Rerouting-Growatt-Wifi-TCPIP-data-via-your-Grott-Server)
-   - Use the local IP of your home assistant
-   - Don't use a DNS, the datalogger can't resolve `homeassistant.local`
+[:books: Grott Beta branch (2.8) - An addon for Home Assistant to monitor Growatt inverters add-on documentation][addon-doc-grott-current]
+
+### &#10003; [Grott stable branch (2.7)][addon-grott]
+
+![Latest Version][grott-version-shield]
+![Supports armhf Architecture][grott-armhf-shield]
+![Supports armv7 Architecture][grott-armv7-shield]
+![Supports aarch64 Architecture][grott-aarch64-shield]
+![Supports amd64 Architecture][grott-amd64-shield]
+![Supports i386 Architecture][grott-i386-shield]
+
+The Growatt inverter monitor with current HA plugin integrated
+
+[:books: Grott stable branch (2.7) add-on documentation][addon-doc-grott]
+
+
+## Releases
+
+Releases are based on [Semantic Versioning][semver], and use the format
+of ``MAJOR.MINOR.PATCH``. In a nutshell, the version will be incremented
+based on the following:
+
+- ``MAJOR``: Incompatible or major changes.
+- ``MINOR``: Backwards-compatible new features and enhancements.
+- ``PATCH``: Backwards-compatible bugfixes and package updates.
+
+You could also open an issue here on GitHub. Note, we use a separate
+GitHub repository for each add-on. Please ensure you are creating the issue
+on the correct GitHub repository matching the add-on.
+
+- [Open an issue for the add-on: Grott Beta branch (2.8) - An addon for Home Assistant to monitor Growatt inverters][grott-current-issue]
+- [Open an issue for the add-on: Grott stable branch (2.7)][grott-issue]
+
+For a general repository issue or add-on ideas [open an issue here][issue]
+
+
+
+[addon-grott-current]: https://github.com/egguy/addon-grott-beta/tree/v0.1.2
+[addon-doc-grott-current]: https://github.com/egguy/addon-grott-beta/blob/v0.1.2/README.md
+[grott-current-issue]: https://github.com/egguy/addon-grott-beta/issues
+[grott-current-version-shield]: https://img.shields.io/badge/version-v0.1.2-blue.svg
+[grott-current-aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[grott-current-amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[grott-current-armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[grott-current-armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+[grott-current-i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
+[addon-grott]: https://github.com/egguy/addon-grott/tree/v0.1.5
+[addon-doc-grott]: https://github.com/egguy/addon-grott/blob/v0.1.5/README.md
+[grott-issue]: https://github.com/egguy/addon-grott/issues
+[grott-version-shield]: https://img.shields.io/badge/version-v0.1.5-blue.svg
+[grott-aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[grott-amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[grott-armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[grott-armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+[grott-i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
 
 ## contributors
 
@@ -45,3 +86,11 @@ Thanks for all the contributors:
 - [perico85](https://github.com/perico85)
 - [crazymonster999](https://github.com/crazymonster999) - Alpha tester
 - Zigbee2mqtt for the inspiration
+
+[gitlabci-shield]: https://gitlab.com/egguy/grott-home-assistant-add-on/badges/master/pipeline.svg
+[gitlabci]: https://gitlab.com/egguy/grott-home-assistant-add-on/pipelines
+[issue]: https://github.com/egguy/grott-home-assistant-add-on/issues
+[license-shield]: https://img.shields.io/github/license/egguy/grott-home-assistant-add-on.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2023.svg
+[project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
+[semver]: http://semver.org/spec/v2.0.0.html
