@@ -11,7 +11,7 @@ This addon allow you to have all the entities automatically created.
 
 ## Add-ons provided by this repository
 
-### &#10003; [Grott Beta branch (2.8) - An addon for Home Assistant to monitor Growatt inverters][addon-grott-current]
+### &#10003; [Grott Beta branch (2.8)][addon-grott-current]
 
 ![Latest Version][grott-current-version-shield]
 ![Supports armhf Architecture][grott-current-armhf-shield]
@@ -22,7 +22,7 @@ This addon allow you to have all the entities automatically created.
 
 The Growatt inverter monitor with current HA plugin integrated
 
-[:books: Grott Beta branch (2.8) - An addon for Home Assistant to monitor Growatt inverters add-on documentation][addon-doc-grott-current]
+[:books: Grott Beta branch (2.8) add-on documentation][addon-doc-grott-current]
 
 ### &#10003; [Grott stable branch (2.7)][addon-grott]
 
@@ -52,7 +52,7 @@ You could also open an issue here on GitHub. Note, we use a separate
 GitHub repository for each add-on. Please ensure you are creating the issue
 on the correct GitHub repository matching the add-on.
 
-- [Open an issue for the add-on: Grott Beta branch (2.8) - An addon for Home Assistant to monitor Growatt inverters][grott-current-issue]
+- [Open an issue for the add-on: Grott Beta branch (2.8)][grott-current-issue]
 - [Open an issue for the add-on: Grott stable branch (2.7)][grott-issue]
 
 For a general repository issue or add-on ideas [open an issue here][issue]
