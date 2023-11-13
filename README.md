@@ -11,19 +11,6 @@ This addon allow you to have all the entities automatically created.
 
 ## Add-ons provided by this repository
 
-### &#10003; [Grott Beta branch (2.8)][addon-grott-current]
-
-![Latest Version][grott-current-version-shield]
-![Supports armhf Architecture][grott-current-armhf-shield]
-![Supports armv7 Architecture][grott-current-armv7-shield]
-![Supports aarch64 Architecture][grott-current-aarch64-shield]
-![Supports amd64 Architecture][grott-current-amd64-shield]
-![Supports i386 Architecture][grott-current-i386-shield]
-
-The Growatt inverter monitor with current HA plugin integrated
-
-[:books: Grott Beta branch (2.8) add-on documentation][addon-doc-grott-current]
-
 ### &#10003; [Grott stable branch (2.7)][addon-grott]
 
 ![Latest Version][grott-version-shield]
@@ -52,22 +39,12 @@ You could also open an issue here on GitHub. Note, we use a separate
 GitHub repository for each add-on. Please ensure you are creating the issue
 on the correct GitHub repository matching the add-on.
 
-- [Open an issue for the add-on: Grott Beta branch (2.8)][grott-current-issue]
 - [Open an issue for the add-on: Grott stable branch (2.7)][grott-issue]
 
 For a general repository issue or add-on ideas [open an issue here][issue]
 
 
 
-[addon-grott-current]: https://github.com/egguy/addon-grott-beta/tree/v0.1.5
-[addon-doc-grott-current]: https://github.com/egguy/addon-grott-beta/blob/v0.1.5/README.md
-[grott-current-issue]: https://github.com/egguy/addon-grott-beta/issues
-[grott-current-version-shield]: https://img.shields.io/badge/version-v0.1.5-blue.svg
-[grott-current-aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
-[grott-current-amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
-[grott-current-armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
-[grott-current-armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
-[grott-current-i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
 [addon-grott]: https://github.com/egguy/addon-grott/tree/v0.1.7
 [addon-doc-grott]: https://github.com/egguy/addon-grott/blob/v0.1.7/README.md
 [grott-issue]: https://github.com/egguy/addon-grott/issues
